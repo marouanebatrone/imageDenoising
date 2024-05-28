@@ -1,0 +1,47 @@
+/*.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+ styles.css */
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0; /* Light gray background color */
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* White background for container */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for container */
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+.form-section h4 {
+  margin-bottom: 10px;
+}
+
+.form-section button {
+  margin-top: 10px;
+}
+
+.noise-section {
+  background-color: #f9f9f9; /* Light gray background color for noise section */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for noise section */
+}
+
+.denoise-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light gray background color for denoise section */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for denoise section */
+}
