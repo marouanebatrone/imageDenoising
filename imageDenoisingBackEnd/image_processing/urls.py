@@ -6,5 +6,5 @@ router = DefaultRouter()
 router.register(r'images', ImageViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

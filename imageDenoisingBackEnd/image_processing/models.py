@@ -5,3 +5,4 @@ class Image(models.Model):
     original_image = models.ImageField(upload_to='images/')
     selected_noise = models.CharField(max_length=50)
     timestamp = models.DateTimeField(default=timezone.now)
+    noisy_image_generated = models.ImageField(upload_to='noisy_images/', null=True, blank=True)
