@@ -22,7 +22,11 @@ class ImageViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        return Response(serializer.data)
+        response_data = {
+            **serializer.data,
+            'original_image': serializer.instance.original_image.url  # Include the original image URL in the response
+        }
+        return Response(response_data)
 
     @action(detail=True, methods=['post'])
     def add_noise(self, request, pk=None):
@@ -38,12 +42,15 @@ class ImageViewSet(viewsets.ModelViewSet):
                 logger.error(f"Failed to load image from path: {img_path}")
                 return Response({'status': 'error', 'message': 'Failed to load image.'}, status=400)
 
+            # Convert BGR to RGB
+            original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2RGB)
+
             # Generate noisy image based on the noise type
-            if noise_type == 'Sel&&poivre':
+            if (noise_type == 'Sel&&poivre'):
                 noisy_img = self.add_salt_and_pepper_noise(original_img)
-            elif noise_type == 'Sel':
+            elif (noise_type == 'Sel'):
                 noisy_img = self.add_salt_noise(original_img)
-            elif noise_type == 'Poivre':
+            elif (noise_type == 'Poivre'):
                 noisy_img = self.add_pepper_noise(original_img)
             else:
                 logger.error(f"Unknown noise type: {noise_type}")

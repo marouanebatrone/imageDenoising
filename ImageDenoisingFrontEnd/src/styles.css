@@ -38,14 +38,21 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for noise section */
 }
 
-.generated_div{
-  max-width: fit-content;
-}
-
 .denoise-section {
   margin-top: 20px;
   padding: 20px;
   background-color: #f9f9f9; /* Light gray background color for denoise section */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for denoise section */
+}
+
+.noisy-image-container img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -24,6 +24,7 @@ interface FormInput {
 
 const MyForm = () => {
   const { control, handleSubmit } = useForm<FormInput>();
+  const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [noisyImage, setNoisyImage] = useState<string | null>(null);
 
   const onSubmit = async (data: FormInput) => {
@@ -36,6 +37,9 @@ const MyForm = () => {
       const createResponse = await axios.post('http://localhost:8000/api/images/', formData);
       console.log("Create response data:", createResponse.data); // Log create response data for debugging
       const imageId = createResponse.data.id;
+      const originalImageUrl = createResponse.data.original_image; // Get the original image URL from the response
+      console.log("Original Image URL:", originalImageUrl); // Log the original image URL
+      setOriginalImage(originalImageUrl); // Set the original image URL state
 
       const noiseResponse = await axios.post(`http://localhost:8000/api/images/${imageId}/add_noise/`, { selected_noise: data.noise.value });
       console.log("Noise response data:", noiseResponse.data); // Log noise response data for debugging
@@ -99,8 +103,15 @@ const MyForm = () => {
             Add
           </Button>
 
+          {originalImage && (
+            <div className="image-container">
+              <p>Original image:</p>
+              <img src={`http://localhost:8000${originalImage}`} alt="Original" />
+            </div>
+          )}
+
           {noisyImage && (
-            <div className="generated_div">
+            <div className="image-container">
               <p>Noisy image generated:</p>
               <img src={`http://localhost:8000${noisyImage}`} alt="Noisy" />
               <Button type="submit" variant="contained">
