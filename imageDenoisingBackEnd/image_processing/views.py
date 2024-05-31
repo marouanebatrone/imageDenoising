@@ -10,6 +10,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Image
 from .serializers import ImageSerializer
+#ajouter
+from skimage import util,io
+
 
 logger = logging.getLogger(__name__)
 
@@ -37,10 +40,18 @@ class ImageViewSet(viewsets.ModelViewSet):
             # Load the original image using OpenCV
             img_path = image.original_image.path
             logger.debug(f"Loading image from path: {img_path}")
-            original_img = cv2.imread(img_path)
+            #if rgba
+            img = PILImage.open(img_path)
+            if  img.mode == 'RGBA':
+                # Convertir l'image en mode RGB
+                img = img.convert('RGB')
+                # Enregistrer l'image convertie
+                img.save(img_path)
+            original_img = cv2.imread(img_path)##ouvrire
             if original_img is None:
                 logger.error(f"Failed to load image from path: {img_path}")
                 return Response({'status': 'error', 'message': 'Failed to load image.'}, status=400)
+        
 
             # Convert BGR to RGB
             original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2RGB)
@@ -52,6 +63,10 @@ class ImageViewSet(viewsets.ModelViewSet):
                 noisy_img = self.add_salt_noise(original_img)
             elif (noise_type == 'Poivre'):
                 noisy_img = self.add_pepper_noise(original_img)
+            elif (noise_type == 'Gaussian'):
+                original_img=io.imread(img_path)
+                noisy_img = self.add_gaussien_noise(original_img)
+
             else:
                 logger.error(f"Unknown noise type: {noise_type}")
                 return Response({'status': 'error', 'message': 'Unknown noise type.'}, status=400)
@@ -121,3 +136,11 @@ class ImageViewSet(viewsets.ModelViewSet):
         out[coords[0], coords[1], :] = 0
         
         return out
+    
+    def add_gaussien_noise(self, image):
+        out = np.copy(image)
+        out = util.random_noise(out, mode='gaussian', mean=0, var=0.01)
+        # Convertir l'image à nouveau en format valide pour PIL
+        out = (out * 255).astype(np.uint8)    
+        return out
+        

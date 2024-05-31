@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'image_denoising',
         'USER': 'root', 
-        'PASSWORD': 'marouane913.',
+        'PASSWORD': '',
         'HOST': 'localhost',  # Optional
         'PORT': '3306',        # Optional
     }

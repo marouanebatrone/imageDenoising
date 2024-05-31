@@ -15,6 +15,8 @@ const options: OptionType[] = [
   { value: 'Sel&&poivre', label: 'Sel&&poivre' },
   { value: 'Sel', label: 'Sel' },
   { value: 'Poivre', label: 'Poivre' },
+  { value: 'Gaussian', label: 'Gaussian' },
+  
 ];
 
 interface FormInput {
@@ -104,14 +106,14 @@ const MyForm = () => {
           </Button>
 
           {originalImage && (
-            <div className="image-container">
+            <div className="noisy-image-container">
               <p>Original image:</p>
               <img src={`http://localhost:8000${originalImage}`} alt="Original" />
             </div>
           )}
 
           {noisyImage && (
-            <div className="image-container">
+            <div className="noisy-image-container">
               <p>Noisy image generated:</p>
               <img src={`http://localhost:8000${noisyImage}`} alt="Noisy" />
               <Button type="submit" variant="contained">
