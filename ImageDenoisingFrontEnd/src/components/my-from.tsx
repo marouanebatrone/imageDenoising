@@ -36,34 +36,35 @@ const MyForm = () => {
   const { control, handleSubmit } = useForm<FormInput>();
   const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [noisyImage, setNoisyImage] = useState<string | null>(null);
+  const [filteredImage, setFilteredImage] = useState<string | null>(null);
 
   const onSubmit = async (data: FormInput) => {
-    console.log("Form data:", data); // Log form data for debugging
+    console.log("Form data:", data);
     const formData = new FormData();
     formData.append("original_image", data.image[0]);
     formData.append("selected_noise", data.noise.value);
 
     try {
       const createResponse = await axios.post('http://localhost:8000/api/images/', formData);
-      console.log("Create response data:", createResponse.data); // Log create response data for debugging
+      console.log("Create response data:", createResponse.data);
       const imageId = createResponse.data.id;
-      const originalImageUrl = createResponse.data.original_image; // Get the original image URL from the response
-      console.log("Original Image URL:", originalImageUrl); // Log the original image URL
-      setOriginalImage(originalImageUrl); // Set the original image URL state
+      const originalImageUrl = createResponse.data.original_image;
+      console.log("Original Image URL:", originalImageUrl);
+      setOriginalImage(originalImageUrl);
 
       const noiseResponse = await axios.post(`http://localhost:8000/api/images/${imageId}/add_noise/`, { selected_noise: data.noise.value });
-      console.log("Noise response data:", noiseResponse.data); // Log noise response data for debugging
-      const imageUrl = noiseResponse.data.noisy_image_generated;
-      setNoisyImage(imageUrl);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        // Handle Axios error
-        console.error("There was an error uploading the image!", error.message);
-        console.log("Error response:", error.response); // Log error response for debugging
-      } else {
-        // Handle other errors
-        console.error("An unexpected error occurred", error);
+      console.log("Noise response data:", noiseResponse.data);
+      const noisyImageUrl = noiseResponse.data.noisy_image_generated;
+      setNoisyImage(noisyImageUrl);
+
+      if (data.filter) {
+        const filterResponse = await axios.post(`http://localhost:8000/api/images/${imageId}/apply_filter/`, { selected_filter: data.filter.value });
+        console.log("Filter response data:", filterResponse.data);
+        const filteredImageUrl = filterResponse.data.filtered_image_url;
+        setFilteredImage(filteredImageUrl);
       }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -124,6 +125,13 @@ const MyForm = () => {
             <div className="noisy-image-container">
               <p>Noisy image generated:</p>
               <img src={`http://localhost:8000${noisyImage}`} alt="Noisy" />
+            </div>
+          )}
+
+          {filteredImage && (
+            <div className="noisy-image-container">
+              <p>Filtered image:</p>
+              <img src={`http://localhost:8000${filteredImage}`} alt="Filtered" />
             </div>
           )}
 
