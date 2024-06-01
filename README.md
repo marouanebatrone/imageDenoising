@@ -1,4 +1,4 @@
-# imageDenoising (An image Processing Web Application)
+# imageDenoising (An image processing web application)
 
 This web application allows users to upload images, apply noise, and then apply various filters to denoise the images. <br>
 The application is built using Django for the backend and React for the frontend.
@@ -34,10 +34,10 @@ The application is built using Django for the backend and React for the frontend
    
 2. **Run the app:**
 
-Run the front end: 
+Run the front end:  <br>
 `cd imageDenoising/imageDenoisingBackEnd` <br>
 `python manage.py runserver`
 
-Run the back end :
+Run the back end : <br>
 `cd imageDenoising/imageDenoisingFront` <br>
 `npm start`
