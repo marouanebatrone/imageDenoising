@@ -11,17 +11,25 @@ interface OptionType {
   label: string;
 }
 
-const options: OptionType[] = [
+const noiseOptions: OptionType[] = [
   { value: 'Sel&&poivre', label: 'Sel&&poivre' },
   { value: 'Sel', label: 'Sel' },
   { value: 'Poivre', label: 'Poivre' },
   { value: 'Gaussian', label: 'Gaussian' },
-  
+];
+
+const filterOptions: OptionType[] = [
+  { value: 'filtre_gaussien', label: 'Filtre Gaussien' },
+  { value: 'filtre_median', label: 'Filtre Médian' },
+  { value: 'filtre_mean', label: 'Filtre Moyenne' },
+  { value: 'filtre_min', label: 'Filtre Min' },
+  { value: 'filtre_max', label: 'Filtre Max' },
 ];
 
 interface FormInput {
   image: File[];
   noise: OptionType;
+  filter: OptionType;
 }
 
 const MyForm = () => {
@@ -95,7 +103,7 @@ const MyForm = () => {
               <MySelect
                 value={value}
                 onChange={onChange}
-                options={options}
+                options={noiseOptions}
               />
             )}
             control={control}
@@ -116,11 +124,27 @@ const MyForm = () => {
             <div className="noisy-image-container">
               <p>Noisy image generated:</p>
               <img src={`http://localhost:8000${noisyImage}`} alt="Noisy" />
-              <Button type="submit" variant="contained">
-                Denoise
-              </Button>
             </div>
           )}
+
+          <div>
+            <h3>Add a filter to the image</h3>
+            <Controller
+              render={({ field: { value, onChange } }) => (
+                <MySelect
+                  value={value}
+                  onChange={onChange}
+                  options={filterOptions}
+                />
+              )}
+              control={control}
+              name="filter"
+            />
+            <Button type="submit" variant="contained">
+              Denoise
+            </Button>
+          </div>
+
         </div>
       </Box>
     </Box>

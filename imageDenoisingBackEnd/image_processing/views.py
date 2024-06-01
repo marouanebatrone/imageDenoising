@@ -27,7 +27,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         response_data = {
             **serializer.data,
-            'original_image': serializer.instance.original_image.url  # Include the original image URL in the response
+            'original_image': serializer.instance.original_image.url 
         }
         return Response(response_data)
 

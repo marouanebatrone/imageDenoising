@@ -7,4 +7,5 @@ router.register(r'images', ImageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('images/denoise/', ImageViewSet.as_view({'post': 'denoise'}), name='image-denoise'),
 ]
