@@ -1,6 +1,6 @@
 # imageDenoising (An image Processing Web Application)
 
-This web application allows users to upload images, apply noise, and then apply various filters to denoise the images. <br
+This web application allows users to upload images, apply noise, and then apply various filters to denoise the images. <br>
 The application is built using Django for the backend and React for the frontend.
 
 ## Features
@@ -24,12 +24,6 @@ The application is built using Django for the backend and React for the frontend
 - Node.js
 - MySQL
 
-### Backend Setup
-
-1. **Clone the repository:**
-   git clone # Image Processing Web Application
-
-This web application allows users to upload images, apply noise, and then apply various filters to denoise the images. The application is built using Django for the backend and React for the frontend.
 
 ## Features
 
@@ -53,14 +47,14 @@ This web application allows users to upload images, apply noise, and then apply 
 - MariaDB/MySQL
 - Git
 
-### Backend Setup
+### Setup
 
 1. **Clone the repository:**
 
    `git clone https://github.com/marouanebatrone/imageDenoising.git`
     `cd imageDenoising`
    
-3. **Run the app: **
+2. **Run the app:**
 
 Run the front end: 
 `cd imageDenoising/imageDenoisingBackEnd`
