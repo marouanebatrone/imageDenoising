@@ -35,9 +35,11 @@ The application is built using Django for the backend and React for the frontend
 2. **Run the app:**
 
 Run the front end:  <br>
-`cd imageDenoising/imageDenoisingBackEnd` <br>
-`python manage.py runserver`
+`cd imageDenoising/imageDenoisingFront` <br>
+`npm install`  <br>
+`npm start`  <br>
 
 Run the back end : <br>
-`cd imageDenoising/imageDenoisingFront` <br>
-`npm start`
+
+`cd imageDenoising/imageDenoisingBackEnd` <br>
+`python manage.py runserver`
