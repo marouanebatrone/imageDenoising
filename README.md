@@ -14,7 +14,7 @@ The application is built using Django for the backend and React for the frontend
 
 - **Backend**: Django, Django REST framework, OpenCV, Pillow, NumPy, scikit-image
 - **Frontend**: React, Material-UI, Axios
-- **Database**: MariaDB/MySQL
+- **Database**: MySQL
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ The application is built using Django for the backend and React for the frontend
 
 - Python 3.x
 - Node.js
-- MariaDB/MySQL
+- MySQL
 - Git
 
 ### Setup
@@ -30,16 +30,16 @@ The application is built using Django for the backend and React for the frontend
 1. **Clone the repository:**
 
    `git clone https://github.com/marouanebatrone/imageDenoising.git` <br>
-    `cd imageDenoising`
+   `cd imageDenoising`
    
 2. **Run the app:**
 
 Run the front end:  <br>
-`cd imageDenoising/imageDenoisingFront` <br>
-`npm install`  <br>
-`npm start`  <br>
+   `cd imageDenoising/imageDenoisingFront` <br>
+   `npm install`  <br>
+   `npm start`  <br>
 
 Run the back end : <br>
 
-`cd imageDenoising/imageDenoisingBackEnd` <br>
-`python manage.py runserver`
+   `cd imageDenoising/imageDenoisingBackEnd` <br>
+   `python manage.py runserver`
