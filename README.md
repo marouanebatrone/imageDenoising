@@ -23,7 +23,6 @@ The application is built using Django for the backend and React for the frontend
 - Python 3.x
 - Node.js
 - MySQL
-- Git
 
 ### Setup
 
